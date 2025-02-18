@@ -18,7 +18,7 @@ public class Driver2 {
         List<Enrollment> enrollments = new ArrayList<>();
         List<String> enrollmentRequests = new ArrayList<>();
 
-        Set<String> displayedErrors = new HashSet<>(); // Menghindari duplikasi error
+        Set<String> displayedErrors = new HashSet<>(); // Untuk menghindari duplikasi error
 
         // Tahap 1: Menyimpan semua input
         while (scanner.hasNextLine()) {
@@ -103,7 +103,7 @@ public class Driver2 {
         courses.sort(Comparator.comparing(Course::getCode));
         courses.forEach(c -> System.out.println(c.getCode() + "|" + c.getCourseName() + "|" + c.getKredit() + "|" + c.getGrade()));
 
-        students.sort(Comparator.comparing(Student::getNama)); // ✅ Urutkan sesuai abjad
+        students.sort(Comparator.comparing(Student::getNama).reversed());
         students.forEach(s -> System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan()));
 
         enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul).reversed()
