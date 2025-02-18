@@ -115,7 +115,7 @@ public class Driver1 {
         courses.sort(Comparator.comparing(Course::getCode));
         for (int i = 0; i < courses.size(); i++) {
             Course c = courses.get(i);
-            System.out.println(c.getCode() + "|" + c.getCourseName() + "|" + c.getKredit() + "|");
+            System.out.println(c.getCode() + "|" + c.getCourseName() + "|" + c.getKredit() + "|" + c.getGrade());
         }
 
         // Sort Student by name in reverse (urutan berdasarkan nama mahasiswa dari abjad terbesar)
@@ -133,7 +133,7 @@ public class Driver1 {
 
         for (int i = 0; i < enrollments.size(); i++) {
             Enrollment e = enrollments.get(i);
-            System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
+            System.out.println(e.getKodeMatkul() + "|" + e.getNim() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
         }
 
         scanner.close();
