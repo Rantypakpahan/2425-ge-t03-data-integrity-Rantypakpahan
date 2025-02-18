@@ -125,12 +125,12 @@ public class Driver1 {
             System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan());
         }
 
-        // Sort Enrollment by kodeMatkul, nim, tahunAjaran, semester (urutan berdasarkan kode mata kuliah, ID mahasiswa, tahun ajaran, dan semester)
-        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul)
+        // Sort Enrollment by kodeMatkul in reverse (urutan berdasarkan kode mata kuliah dari terbesar ke terkecil)
+        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul).reversed()
                 .thenComparing(Enrollment::getNim)
                 .thenComparing(Enrollment::getTahunAjaran)
                 .thenComparing(Enrollment::getSemester));
-        
+
         for (int i = 0; i < enrollments.size(); i++) {
             Enrollment e = enrollments.get(i);
             System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
