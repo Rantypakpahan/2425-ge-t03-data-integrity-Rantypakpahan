@@ -18,7 +18,7 @@ public class Driver2 {
         List<Enrollment> enrollments = new ArrayList<>();
         List<String> enrollmentRequests = new ArrayList<>();
 
-        Set<String> displayedErrors = new HashSet<>(); // Untuk menghindari duplikasi error
+        Set<String> displayedErrors = new LinkedHashSet<>(); // Menggunakan LinkedHashSet agar urutan error tetap
 
         // Tahap 1: Menyimpan semua input
         while (scanner.hasNextLine()) {
@@ -79,38 +79,32 @@ public class Driver2 {
                 boolean courseExists = courses.stream().anyMatch(c -> c.getCode().equals(kodeMatkul));
                 boolean studentExists = students.stream().anyMatch(s -> s.getNim().equals(nim));
 
-                if (!courseExists) {
-                    String errorMessage = "invalid course|" + kodeMatkul;
-                    if (displayedErrors.add(errorMessage)) { // Tambah ke Set dan cetak hanya jika belum ada
-                        System.out.println(errorMessage);
-                    }
-                }
-
                 if (!studentExists) {
-                    String errorMessage = "invalid student|" + nim;
-                    if (displayedErrors.add(errorMessage)) { // Tambah ke Set dan cetak hanya jika belum ada
-                        System.out.println(errorMessage);
-                    }
+                    displayedErrors.add("invalid student|" + nim);
                 }
-
+                if (!courseExists) {
+                    displayedErrors.add("invalid course|" + kodeMatkul);
+                }
                 if (courseExists && studentExists) {
                     enrollments.add(new Enrollment(kodeMatkul, nim, tahunAjaran, semester, status));
                 }
             }
         }
 
+        // Cetak error dalam urutan pertama kali ditemukan
+        displayedErrors.forEach(System.out::println);
+
         // Tahap 3: Menampilkan hasil sesuai format
         courses.sort(Comparator.comparing(Course::getCode));
         courses.forEach(c -> System.out.println(c.getCode() + "|" + c.getCourseName() + "|" + c.getKredit() + "|" + c.getGrade()));
 
-        students.sort(Comparator.comparing(Student::getNama).reversed());
+        students.sort(Comparator.comparing(Student::getNama)); // Urutkan berdasarkan nama
         students.forEach(s -> System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan()));
 
-        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul).reversed()
+        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul)
                 .thenComparing(Enrollment::getNim)
                 .thenComparing(Enrollment::getTahunAjaran)
                 .thenComparing(Enrollment::getSemester));
-
         enrollments.forEach(e -> System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus()));
 
         scanner.close();
