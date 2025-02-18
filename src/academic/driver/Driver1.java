@@ -118,8 +118,8 @@ public class Driver1 {
             System.out.println(c.getCode() + "|" + c.getCourseName() + "|" + c.getKredit() + "|");
         }
 
-        // Sort Student by nim (urutan berdasarkan ID mahasiswa)
-        students.sort(Comparator.comparing(Student::getNim));
+        // Sort Student by name in reverse (urutan berdasarkan nama mahasiswa dari abjad terbesar)
+        students.sort(Comparator.comparing(Student::getNama).reversed());
         for (int i = 0; i < students.size(); i++) {
             Student s = students.get(i);
             System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan());
@@ -133,7 +133,7 @@ public class Driver1 {
         
         for (int i = 0; i < enrollments.size(); i++) {
             Enrollment e = enrollments.get(i);
-            System.out.println(e.getKodeMatkul() + "|" + e.getNim() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
+            System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
         }
 
         scanner.close();
