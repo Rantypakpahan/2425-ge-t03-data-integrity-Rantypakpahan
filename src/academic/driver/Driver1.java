@@ -123,7 +123,7 @@ public class Driver1 {
         for (int i = 0; i < students.size(); i++) {
             Student s = students.get(i);
             System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan());
-        }  
+        }   
 
         // Sort Enrollment by kodeMatkul in reverse (urutan berdasarkan kode mata kuliah dari terbesar ke terkecil)
         enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul).reversed()
