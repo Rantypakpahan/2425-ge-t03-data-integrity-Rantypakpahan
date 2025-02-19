@@ -9,7 +9,7 @@ import java.util.*;
  * @author 12S23008 Ranty Insen Pakpahan
  * @author 12S23048 Grace Caldera Situmorang
  */ 
- 
+  
 public class Driver2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
