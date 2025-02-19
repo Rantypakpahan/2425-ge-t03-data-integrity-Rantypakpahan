@@ -37,7 +37,7 @@ public class Course {
    public int getKredit() {
        return kredit;
    }
-
+ 
    public void setKredit(int kredit) {
        this.kredit = kredit;
    }

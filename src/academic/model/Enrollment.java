@@ -42,7 +42,7 @@ public class Enrollment {
     public void setTahunAjaran(String tahunAjaran) {
         this.tahunAjaran = tahunAjaran;
     }
-
+ 
     public String getSemester() {
         return semester;
     }

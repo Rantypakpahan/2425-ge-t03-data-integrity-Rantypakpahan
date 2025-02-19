@@ -32,7 +32,7 @@ public class Student {
     public void setNama(String nama) {
         this.nama = nama;
     }
-
+ 
     public int getTahun() {
         return tahun;
     }
