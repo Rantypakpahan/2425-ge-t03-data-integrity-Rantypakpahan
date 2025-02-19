@@ -110,7 +110,6 @@ public class Driver1 {
                 }
             }
         }
-        
 
         // Sort Course by code (urutan berdasarkan kode mata kuliah)
         courses.sort(Comparator.comparing(Course::getCode));
