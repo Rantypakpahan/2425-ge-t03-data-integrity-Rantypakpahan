@@ -3,6 +3,8 @@ package academic.driver;
 import academic.model.Course;
 import academic.model.Enrollment;
 import academic.model.Student;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.*;
 
 /**
@@ -13,9 +15,9 @@ import java.util.*;
 public class Driver1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Course> courses = new ArrayList<>();
-        List<Student> students = new ArrayList<>();
-        List<Enrollment> enrollments = new ArrayList<>();
+        ArrayList<Course> courses = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Enrollment> enrollments = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
@@ -98,7 +100,7 @@ public class Driver1 {
         }   
 
         // Sort Enrollment by kodeMatkul in reverse
-        enrollments.reversed();
+        Collections.reverse(enrollments);
  
         for (Enrollment e : enrollments) {
             System.out.println(e.getKodeMatkul() + "|" + e.getNim() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
