@@ -99,7 +99,6 @@ public class Driver1 {
             System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan());
         }   
 
-        Collections.reverse(enrollments);
         for (Enrollment e : enrollments) {
             System.out.println(e.toString());
         }
