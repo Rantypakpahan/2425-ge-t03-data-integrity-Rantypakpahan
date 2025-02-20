@@ -12,115 +12,85 @@ import java.util.*;
 
 public class Driver2 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        List<Course> courses = new ArrayList<>();
-        List<Student> students = new ArrayList<>();
-        List<Enrollment> enrollments = new ArrayList<>();
-        List<String> enrollmentRequests = new ArrayList<>();
+        Scanner scn =  new Scanner(System.in);
 
-        Set<String> displayedErrors = new HashSet<>(); // Untuk menghindari duplikasi error
+        ArrayList<Course> courses = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Enrollment> enrollments = new ArrayList<>();
 
-        // Tahap 1: Menyimpan semua input
-        while (scanner.hasNextLine()) {
-            String input = scanner.nextLine();
-            if (input.equals("---")) {
+        while (true){
+            String command = scn.nextLine();
+            if (command.equals("---")){
                 break;
             }
 
-            String[] parts = input.split("#");
-            if (parts.length > 1) {
-                String command = parts[0];
+            String[] temp = command.split("#");
+            String perintah = temp[0];
 
-                switch (command) {
-                    case "course-add":
-                        if (parts.length == 5) {
-                            String code = parts[1];
-                            String courseName = parts[2];
-                            int kredit = Integer.parseInt(parts[3]);
-                            String grade = parts[4];
-
-                            if (courses.stream().noneMatch(c -> c.getCode().equals(code))) {
-                                courses.add(new Course(code, courseName, kredit, grade));
-                            }
-                        }
+            switch (perintah) {
+                case "course-add":
+                    courses.add(new Course(temp[1], temp[2], Integer.parseInt(temp[3]), temp[4]));
+                    break;
+                case "student-add":
+                    students.add(new Student(temp[1], temp[2], Integer.parseInt(temp[3]), temp[4]));
+                    break;
+                case "enrollment-add":
+                    String kodeMatkul = temp[1];
+                    String nim = temp[2];
+                    Boolean cekNim = cekStudent(students, nim);
+                    Boolean cekKodeMatkul = cekCourse(courses, kodeMatkul);
+                    if (!cekKodeMatkul){
+                        System.out.println("invalid course|"+kodeMatkul);
                         break;
-
-                    case "student-add":
-                        if (parts.length == 5) {
-                            String nim = parts[1];
-                            String nama = parts[2];
-                            int tahun = Integer.parseInt(parts[3]);
-                            String jurusan = parts[4];
-
-                            if (students.stream().noneMatch(s -> s.getNim().equals(nim))) {
-                                students.add(new Student(nim, nama, tahun, jurusan));
-                            }
-                        }
+                    }
+                    if (!cekNim){
+                        System.out.println("invalid student|"+nim);
                         break;
-
-                    case "enrollment-add":
-                        enrollmentRequests.add(input); // Simpan request untuk diproses nanti
-                        break;
-                }
+                    }
+                    
+                    enrollments.add(new Enrollment(kodeMatkul,nim, temp[3], temp[4]));
+                    break;
             }
+
+
         }
 
-        // Tahap 2: Memproses enrollment setelah semua data course dan student tersedia
-        for (String request : enrollmentRequests) {
-            String[] parts = request.split("#");
-
-            if (parts.length == 5 || parts.length == 6) {
-                String kodeMatkul = parts[1];
-                String nim = parts[2];
-                String tahunAjaran = parts[3];
-                String semester = parts[4];
-                String status = (parts.length == 6) ? parts[5] : "None";
-
-                boolean courseExists = courses.stream().anyMatch(c -> c.getCode().equals(kodeMatkul));
-                boolean studentExists = students.stream().anyMatch(s -> s.getNim().equals(nim));
-
-                if (!courseExists) {
-                    String errorMessage = "invalid course|" + kodeMatkul;
-                    if (displayedErrors.add(errorMessage)) { // Tambah ke Set dan cetak hanya jika belum ada
-                        System.out.println(errorMessage);
-                    }
-                }
-
-                if (!studentExists) {
-                    String errorMessage = "invalid student|" + nim;
-                    if (displayedErrors.add(errorMessage)) { // Tambah ke Set dan cetak hanya jika belum ada
-                        System.out.println(errorMessage);
-                    }
-                }
-
-                // Cek apakah enrollment sudah ada
-                boolean enrollmentExists = enrollments.stream().anyMatch(e -> 
-                    e.getKodeMatkul().equals(kodeMatkul) && 
-                    e.getNim().equals(nim) && 
-                    e.getTahunAjaran().equals(tahunAjaran) && 
-                    e.getSemester().equals(semester)
-                );
-
-                if (courseExists && studentExists && !enrollmentExists) {
-                    enrollments.add(new Enrollment(kodeMatkul, nim, tahunAjaran, semester, status));
-                }
-            }
+        for (int i = courses.size()-1; i >= 0; i--){
+            System.out.println(courses.get(i).toString());
         }
 
-        // Tahap 3: Menampilkan hasil sesuai format
-        courses.sort(Comparator.comparing(Course::getCode));
-        courses.forEach(c -> System.out.println(c.getCode() + "|" + c.getCourseName() + "|" + c.getKredit() + "|" + c.getGrade()));
+        for (int i= 0; i < students.size(); i++){
+            System.out.println(students.get(i).toString());
+        }
 
-        students.sort(Comparator.comparing(Student::getNama).reversed());
-        students.forEach(s -> System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan()));
+        for (int i= 0; i < enrollments.size(); i++){
+            System.out.println(enrollments.get(i).toString());
+        }
 
-        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul).reversed()
-                .thenComparing(Enrollment::getNim)
-                .thenComparing(Enrollment::getTahunAjaran)
-                .thenComparing(Enrollment::getSemester)); 
 
-        enrollments.forEach(e -> System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus()));
- 
-        scanner.close();
+
+    }
+
+
+    public static Boolean cekStudent(ArrayList<Student> students, String nim){
+        for (int i = 0; i < students.size(); i++){
+            if (students.get(i).getNim().equals(nim)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Boolean cekCourse(ArrayList<Course> courses, String kodeMatkul){
+        for (int i = 0; i < courses.size(); i++){
+            if (courses.get(i).getCode().equals(kodeMatkul)){
+                return true;
+            }
+        }
+        return false;
     }
 }
+
+
+
+

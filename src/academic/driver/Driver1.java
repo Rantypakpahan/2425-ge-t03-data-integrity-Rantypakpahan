@@ -77,7 +77,7 @@ public class Driver1 {
                             } else if (!studentExists) {
                                 System.out.println("invalid student|" + nim);
                             } else {
-                                enrollments.add(new Enrollment(kodeMatkul, nim, tahunAjaran, semester, status));
+                                enrollments.add(new Enrollment(kodeMatkul, nim, tahunAjaran, semester));
                             }
                         }
                         break;

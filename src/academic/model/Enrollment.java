@@ -9,14 +9,13 @@ public class Enrollment {
     private String kodeMatkul;
     private String tahunAjaran;
     private String semester;
-    private String status;
+    private String status = "None";
 
-    public Enrollment(String nim, String kodeMatkul, String tahunAjaran, String semester, String status) {
+    public Enrollment(String kodeMatkul, String nim, String tahunAjaran, String semester) {
         this.nim = nim;
         this.kodeMatkul = kodeMatkul;
         this.tahunAjaran = tahunAjaran;
         this.semester = semester;
-        this.status = status;
     }
 
     public String getNim() {
@@ -46,6 +45,6 @@ public class Enrollment {
 
     @Override
     public String toString() {
-        return nim + "|" + kodeMatkul + "|" + tahunAjaran + "|" + semester + "|" + status;
+        return kodeMatkul + "|" + nim + "|" + tahunAjaran + "|" + semester + "|" + status;
     }
 }
