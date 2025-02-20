@@ -93,7 +93,15 @@ public class Driver2 {
                     }
                 }
 
-                if (courseExists && studentExists) {
+                // Cek apakah enrollment sudah ada
+                boolean enrollmentExists = enrollments.stream().anyMatch(e -> 
+                    e.getKodeMatkul().equals(kodeMatkul) && 
+                    e.getNim().equals(nim) && 
+                    e.getTahunAjaran().equals(tahunAjaran) && 
+                    e.getSemester().equals(semester)
+                );
+
+                if (courseExists && studentExists && !enrollmentExists) {
                     enrollments.add(new Enrollment(kodeMatkul, nim, tahunAjaran, semester, status));
                 }
             }
