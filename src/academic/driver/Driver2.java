@@ -103,18 +103,16 @@ public class Driver2 {
         courses.sort(Comparator.comparing(Course::getCode));
         courses.forEach(c -> System.out.println(c.getCode() + "|" + c.getCourseName() + "|" + c.getKredit() + "|" + c.getGrade()));
 
-        // Mengurutkan students berdasarkan nama dari A-Z (ascending order)
-        students.sort(Comparator.comparing(Student::getNama));
+        students.sort(Comparator.comparing(Student::getNama).reversed());
         students.forEach(s -> System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan()));
 
-        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul)
+        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul).reversed()
                 .thenComparing(Enrollment::getNim)
                 .thenComparing(Enrollment::getTahunAjaran)
-                .thenComparing(Enrollment::getSemester));
+                .thenComparing(Enrollment::getSemester)); 
 
         enrollments.forEach(e -> System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus()));
 
         scanner.close();
     }
 }
- 
