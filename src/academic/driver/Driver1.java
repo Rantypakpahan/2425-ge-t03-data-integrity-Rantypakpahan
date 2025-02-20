@@ -129,7 +129,7 @@ public class Driver1 {
         enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul).reversed()
                 .thenComparing(Enrollment::getNim)
                 .thenComparing(Enrollment::getTahunAjaran)
-                .thenComparing(Enrollment::getSemester));
+                .thenComparing(Enrollment::getSemester)); 
  
         for (int i = 0; i < enrollments.size(); i++) {
             Enrollment e = enrollments.get(i);
