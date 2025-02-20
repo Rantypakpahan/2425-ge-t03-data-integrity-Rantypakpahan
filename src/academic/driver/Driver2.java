@@ -120,7 +120,7 @@ public class Driver2 {
                 .thenComparing(Enrollment::getSemester)); 
 
         enrollments.forEach(e -> System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus()));
-
+ 
         scanner.close();
     }
 }
