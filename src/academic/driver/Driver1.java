@@ -98,10 +98,7 @@ public class Driver1 {
         }   
 
         // Sort Enrollment by kodeMatkul in reverse
-        enrollments.sort(Comparator.comparing(Enrollment::getKodeMatkul)
-                .thenComparing(Enrollment::getNim)
-                .thenComparing(Enrollment::getTahunAjaran)
-                .thenComparing(Enrollment::getSemester)); 
+        enrollments.reversed();
  
         for (Enrollment e : enrollments) {
             System.out.println(e.getKodeMatkul() + "|" + e.getNim() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
