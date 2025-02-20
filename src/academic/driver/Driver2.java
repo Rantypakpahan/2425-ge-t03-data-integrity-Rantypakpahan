@@ -113,6 +113,6 @@ public class Driver2 {
 
         enrollments.forEach(e -> System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus()));
 
-        scanner.close();
+        scanner.close(); 
     }
 }

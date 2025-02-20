@@ -107,6 +107,6 @@ public class Driver1 {
             System.out.println(e.getNim() + "|" + e.getKodeMatkul() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
         }
 
-        scanner.close();
+        scanner.close(); 
     }
 }
