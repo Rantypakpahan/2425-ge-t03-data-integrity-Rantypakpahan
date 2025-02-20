@@ -103,7 +103,7 @@ public class Driver1 {
         Collections.reverse(enrollments);
  
         for (Enrollment e : enrollments) {
-            System.out.println(e.getKodeMatkul() + "|" + e.getNim() + "|" + e.getTahunAjaran() + "|" + e.getSemester() + "|" + e.getStatus());
+            System.out.println(enrollments.toString());
         }
 
         scanner.close(); 
