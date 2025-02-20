@@ -23,32 +23,17 @@ public class Enrollment {
         return nim;
     }
 
-    public void setNim(String nim) {
-        this.nim = nim;
-    }
 
     public String getKodeMatkul() {
         return kodeMatkul;
     }
 
-    public void setKodeMatkul(String kodeMatkul) {
-        this.kodeMatkul = kodeMatkul;
-    }
-
     public String getTahunAjaran() {
         return tahunAjaran;
-    }
-
-    public void setTahunAjaran(String tahunAjaran) {
-        this.tahunAjaran = tahunAjaran;
     }
  
     public String getSemester() {
         return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
     }
 
     public String getStatus() {

@@ -22,9 +22,6 @@ public class Course {
        return code;
    }
 
-   public void setCode(String code) {
-       this.code = code;
-   }
 
    public String getCourseName() {
        return courseName;
@@ -46,9 +43,6 @@ public class Course {
        return grade;
    }
 
-   public void setGrade(String grade) {
-       this.grade = grade;
-   }
 
    @Override
    public String toString() {

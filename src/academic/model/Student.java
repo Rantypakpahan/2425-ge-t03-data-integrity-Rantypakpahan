@@ -21,9 +21,7 @@ public class Student {
         return nim;
     }
 
-    public void setNim(String nim) {
-        this.nim = nim;
-    }
+
 
     public String getNama() {
         return nama;
@@ -35,10 +33,6 @@ public class Student {
  
     public int getTahun() {
         return tahun;
-    }
-
-    public void setTahun(int tahun) {
-        this.tahun = tahun;
     }
 
     public String getJurusan() {
