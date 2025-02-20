@@ -20,9 +20,7 @@ public class Student {
     public String getNim() {
         return nim;
     }
-
-
-
+    
     public String getNama() {
         return nama;
     }

@@ -35,9 +35,6 @@ public class Course {
        return kredit;
    }
  
-   public void setKredit(int kredit) {
-       this.kredit = kredit;
-   }
 
    public String getGrade() {
        return grade;
