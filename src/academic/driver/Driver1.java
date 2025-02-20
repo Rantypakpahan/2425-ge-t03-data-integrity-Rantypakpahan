@@ -99,11 +99,9 @@ public class Driver1 {
             System.out.println(s.getNim() + "|" + s.getNama() + "|" + s.getTahun() + "|" + s.getJurusan());
         }   
 
-        // Sort Enrollment by kodeMatkul in reverse
         Collections.reverse(enrollments);
- 
         for (Enrollment e : enrollments) {
-            System.out.println(enrollments.toString());
+            System.out.println(e.toString());
         }
 
         scanner.close(); 
